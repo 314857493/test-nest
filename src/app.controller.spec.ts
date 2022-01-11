@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AppModule } from './app.module';
 import { CatsService } from './cats/cats.service';
 import { CatsController } from './cats/cats.controller';
 
@@ -19,6 +20,10 @@ describe('AppController', () => {
   describe('root', () => {
     it('should return "Hello World!"', () => {
       expect(appController.getHello()).toBe('Hello World!');
+    });
+
+    it('module should be defined', () => {
+      expect(AppModule).toBeDefined();
     });
   });
 });
