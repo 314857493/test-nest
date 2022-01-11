@@ -14,7 +14,7 @@ export class CatsController {
   constructor(private catsService: CatsService) {}
 
   @Get()
-  find(@Query('name') name: string): response {
+  find(@Query('name') name?: string): response {
     const result = this.catsService.find(name);
     return {
       code: 1,
