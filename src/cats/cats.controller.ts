@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Query,
+  HttpCode,
+} from '@nestjs/common';
 import { CatDto } from './cat.dto';
 import { CatsService } from './cats.service';
 
@@ -21,6 +29,16 @@ export class CatsController {
       code: 1,
       data: result,
       message: 'success',
+    };
+  }
+
+  @Get('error')
+  @HttpCode(400)
+  async error() {
+    return {
+      code: 400,
+      data: 'something err',
+      message: 'error',
     };
   }
 
@@ -49,7 +67,7 @@ export class CatsController {
   }
 
   // post 通过/update来更新数据
-  @Post('/update')
+  @Post('update')
   async updateOne(@Body() cat: CatDto): Promise<response> {
     const result = this.catsService.updateOne(cat);
     return {
@@ -60,7 +78,7 @@ export class CatsController {
   }
 
   // post 通过/delete来删除数据
-  @Post('/delete')
+  @Post('delete')
   async deleteOne(@Body() cat: CatDto): Promise<response> {
     const result = this.catsService.deleteOne(cat);
     return {
